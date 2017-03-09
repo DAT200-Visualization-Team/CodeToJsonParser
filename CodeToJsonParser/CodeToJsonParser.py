@@ -6,20 +6,16 @@ import pyperclip
 import json
 
 
-while(True):
+while True:
     # ctrl-c to quit
     data = {}
 
     input_code = []
-    while(True):
+    while True:
         input_function = input("New function name:\n")
         text = ""
 
-        if(input_function == ""):
-            data[input_function] = {}
-
-            data[input_function]["header"] = input_function
-            data[input_function]["lines"] = input_code
+        if input_function == "":
 
             pyperclip.copy(json.dumps(data))
 
@@ -27,11 +23,18 @@ while(True):
 
             break
         else:
+            data[input_function] = {}
+
             print("Paste the Lines of code:\n")
-            while(True):
+            data[input_function]["header"] = input()
+
+            while True:
                 line = input()
                 if line:
                     input_code.append(line)
                 else:
                     break
+
+            data[input_function]["lines"] = input_code
+            input_code = []
 
